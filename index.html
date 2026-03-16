@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>スナバカフェ | 今治市のレトロ喫茶</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="今治市のレトロな喫茶店・スナバカフェ。落ち着いた店内で、マスターのフィオナさんが丁寧に淹れるオリジナルブレンドコーヒーと、昔ながらのナポリタンをお楽しみください。">
+  <style>
+    body {
+      font-family: "游明朝体", "Yu Mincho", "Hiragino Mincho ProN", "MS PMincho", serif;
+      margin: 0;
+      padding: 0;
+      line-height: 2;
+      color: #2e2418;
+      font-size: 18px;
+      background:
+        radial-gradient(circle at 0 0, rgba(255,255,255,0.4), transparent 60%),
+        radial-gradient(circle at 100% 100%, rgba(255,255,255,0.35), transparent 55%),
+        #f1e4cf;
+    }
+
+    /* ── ヒーロー画像付きヘッダー ── */
+    .hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fdf5e6;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(60,30,15,0.82), rgba(90,59,38,0.75)),
+        url('https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1400&q=80') center/cover no-repeat;
+      z-index: 0;
+    }
+    .hero .inner {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      padding: 80px 24px 70px;
+    }
+    .hero .tagline {
+      font-size: 15px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.85;
+      margin-bottom: 12px;
+    }
+    .hero h1 {
+      margin: 0 0 16px;
+      font-size: 48px;
+      letter-spacing: 0.3em;
+      text-indent: 0.3em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .hero .subtitle {
+      font-size: 19px;
+      line-height: 1.9;
+      opacity: 0.95;
+    }
+    .hero-divider {
+      display: block;
+      margin: 0 auto;
+      width: 80px;
+      height: 2px;
+      background: rgba(255,255,255,0.5);
+      border: none;
+      margin-top: 20px;
+    }
+
+    /* ── フォトバナー（セクション間の装飾画像） ── */
+    .photo-banner {
+      width: 100%;
+      max-width: 960px;
+      margin: 0 auto;
+      height: 260px;
+      overflow: hidden;
+      position: relative;
+    }
+    .photo-banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.85) contrast(1.05);
+    }
+    .photo-banner-rounded {
+      border-radius: 12px;
+      margin-top: 32px;
+      margin-bottom: 8px;
+      height: 220px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    /* ── メインコンテンツ ── */
+    main {
+      max-width: 960px;
+      margin: 40px auto 32px;
+      padding: 44px 32px 50px;
+      background: #fbf4e6;
+      box-shadow:
+        0 0 0 1px rgba(190, 150, 100, 0.3),
+        0 12px 26px rgba(0,0,0,0.18);
+      position: relative;
+    }
+    main::before,
+    main::after {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(176, 137, 94, 0.45);
+      pointer-events: none;
+    }
+    main::after {
+      inset: 18px;
+      border-style: dashed;
+      border-color: rgba(176, 137, 94, 0.35);
+    }
+
+    /* ── セクション ── */
+    section {
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px dashed #ceb89a;
+    }
+    section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    h2 {
+      display: inline-block;
+      font-size: 26px;
+      margin: 0 0 18px;
+      padding: 6px 20px;
+      border-radius: 999px;
+      border: 1px solid #b0854b;
+      background: linear-gradient(#fdf6e9, #f1ddc2);
+      color: #3e2c1b;
+    }
+    .lead {
+      font-size: 18px;
+      margin-bottom: 10px;
+    }
+    .small {
+      font-size: 15px;
+      color: #6f5a44;
+    }
+
+    /* ── SVGイラスト装飾 ── */
+    .icon-deco {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .icon-deco svg {
+      flex-shrink: 0;
+    }
+
+    /* ── 写真付きセクション ── */
+    .section-with-photo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    .section-photo {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      aspect-ratio: 4/3;
+    }
+    .section-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: saturate(0.9);
+    }
+
+    /* ── 2カラム ── */
+    .two-column {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 26px;
+    }
+
+    /* ── メニューカード ── */
+    .menu-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .menu-item {
+      padding: 18px 18px 14px;
+      border-radius: 10px;
+      background: rgba(255, 248, 232, 0.95);
+      border: 1px solid rgba(189, 150, 104, 0.4);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .menu-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+    }
+    .menu-icon {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .menu-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .menu-name {
+      font-weight: bold;
+      font-size: 19px;
+    }
+    .menu-price {
+      font-size: 17px;
+      color: #4a331f;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+    .menu-desc {
+      font-size: 16px;
+      color: #6a5540;
+      margin-top: 8px;
+      line-height: 1.9;
+    }
+    .menu-note {
+      font-size: 15px;
+      color: #6f5a44;
+      margin-top: 14px;
+    }
+
+    /* ── 店舗情報 ── */
+    .info-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 17px;
+    }
+    .info-list li {
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px dotted #d8c29a;
+    }
+    .info-list li:last-child {
+      border-bottom: none;
+    }
+    .label {
+      display: inline-block;
+      min-width: 100px;
+      font-weight: bold;
+      color: #3d2818;
+    }
+
+    /* ── フッター ── */
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #7b6a57;
+      padding: 16px 10px 28px;
+    }
+
+    /* ── レスポンシブ ── */
+    @media (max-width: 768px) {
+      .hero { min-height: 320px; }
+      .hero .inner { padding: 60px 18px 50px; }
+      .hero h1 { font-size: 32px; }
+      .hero .subtitle { font-size: 17px; }
+      main {
+        margin: 24px 12px 24px;
+        padding: 28px 16px 36px;
+      }
+      main::before,
+      main::after {
+        display: none;
+      }
+      .section-with-photo {
+        grid-template-columns: 1fr;
+      }
+      .menu-list {
+        grid-template-columns: 1fr;
+      }
+      .two-column {
+        grid-template-columns: 1fr;
+      }
+      .photo-banner {
+        height: 180px;
+      }
+      .photo-banner-rounded {
+        height: 160px;
+        margin-left: 12px;
+        margin-right: 12px;
+        width: calc(100% - 24px);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ヒーロー（背景写真付き） -->
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="inner">
+      <p class="tagline">IMABARI · RETRO COFFEE</p>
+      <h1>スナバカフェ</h1>
+      <p class="subtitle">
+        ひと息つきたい日に立ち寄る、今治の静かな喫茶店。<br>
+        マスター・フィオナさんが淹れる一杯と、落ち着いた時間を。
+      </p>
+      <hr class="hero-divider">
+    </div>
+  </div>
+
+  <main>
+    <!-- ── About（写真付き） ── -->
+    <section id="about">
+      <h2>スナバカフェについて</h2>
+      <div class="section-with-photo">
+        <div>
+          <p class="lead">
+            スナバカフェは、今治市にある小さなレトロ喫茶です。<br>
+            やわらかな照明と木の家具に囲まれた店内には、ゆったりとした時間が流れています。
+          </p>
+          <p>
+            仕事やお出かけの合間にふと一息つきたいとき、<br>
+            本を読みながら静かに過ごしたいとき。<br>
+            ここは、慌ただしい日常から少しだけ離れてリラックスできる場所です。
+          </p>
+        </div>
+        <div class="section-photo">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=600&q=80" alt="落ち着いた雰囲気の店内イメージ" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Master（写真付き・逆順） ── -->
+    <section id="master">
+      <h2>マスター・フィオナさん</h2>
+      <div class="section-with-photo">
+        <div class="section-photo">
+          <img src="C3A85A75-03EC-4F85-97FE-924CD046684D.png" alt="マスター・フィオナさん" loading="lazy">
+        </div>
+        <div>
+          <p class="lead">
+            カウンターの中で静かにコーヒーを淹れる、スナバカフェのマスター・フィオナさん。
+          </p>
+          <p>
+            「せかせかしないで、ゆっくりくつろいでもらえる場所をつくりたい」という思いから、
+            このお店をはじめました。<br>
+            一杯一杯ていねいにドリップするブレンドコーヒーと、
+            お客様それぞれのペースを大切にした、さりげないおもてなしが魅力です。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── フォトバナー ── -->
+    <div class="photo-banner photo-banner-rounded">
+      <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200&q=80" alt="温かみのあるカフェの風景" loading="lazy">
+    </div>
+
+    <!-- ── Menu（SVGアイコン付きカード） ── -->
+    <section id="menu" style="margin-top: 32px;">
+      <h2>メニュー</h2>
+      <ul class="menu-list">
+        <li class="menu-item">
+          <div class="menu-icon">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="28" cy="42" rx="18" ry="6" fill="#e8d5b8"/>
+              <path d="M10 36c0-10 8-22 18-22s18 12 18 22" stroke="#5a3b26" stroke-width="2.2" fill="#f9f0e0"/>
+              <ellipse cx="28" cy="36" rx="18" ry="6" fill="#f9f0e0" stroke="#5a3b26" stroke-width="2"/>
+              <path d="M46 32c4-1 7 1 7 4s-3 5-7 4" stroke="#5a3b26" stroke-width="2" fill="none"/>
+              <path d="M22 18c-1-5 2-10 6-12" stroke="#b09070" stroke-width="1.5" fill="none" opacity="0.6" stroke-linecap="round"/>
+              <path d="M28 16c0-6 3-10 5-12" stroke="#b09070" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
+              <path d="M34 18c1-5-1-9-3-11" stroke="#b09070" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="menu-header">
+            <span class="menu-name">オリジナルブレンドコーヒー</span>
+            <span class="menu-price">550円（税込）</span>
+          </div>
+          <p class="menu-desc">
+            スナバカフェ自慢の一杯。<br>
+            その日の気分や天気に合わせて、バランスよく仕上げたオリジナルブレンドです。<br>
+            ゆっくりとした時間と一緒にお楽しみください。
+          </p>
+        </li>
+        <li class="menu-item">
+          <div class="menu-icon">
+            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="28" cy="44" rx="20" ry="5" fill="#e8d5b8"/>
+              <ellipse cx="28" cy="40" rx="20" ry="8" fill="#faf3e6" stroke="#5a3b26" stroke-width="2"/>
+              <path d="M12 34c2-3 6-6 16-6s14 3 16 6" stroke="#c94c30" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M14 30c3-4 7-6 14-6s11 2 14 6" stroke="#e8a640" stroke-width="3" fill="none" opacity="0.7" stroke-linecap="round"/>
+              <circle cx="20" cy="32" r="2" fill="#3a7a2a" opacity="0.7"/>
+              <circle cx="36" cy="31" r="1.5" fill="#3a7a2a" opacity="0.6"/>
+              <circle cx="28" cy="29" r="1.8" fill="#c94c30" opacity="0.5"/>
+            </svg>
+          </div>
+          <div class="menu-header">
+            <span class="menu-name">昔ながらのナポリタン</span>
+            <span class="menu-price">1,100円（税込）</span>
+          </div>
+          <p class="menu-desc">
+            ちょっと太めの麺に、ケチャップの香りがどこか懐かしいナポリタン。<br>
+            喫茶店らしい一皿を、ブレンドコーヒーとご一緒にどうぞ。
+          </p>
+        </li>
+      </ul>
+      <p class="menu-note">
+        ※メニュー内容・価格は仕入れ状況等により変更となる場合があります。<br>
+        最新の情報は店頭にてご確認ください。
+      </p>
+    </section>
+
+    <!-- ── Access ── -->
+    <section id="access">
+      <div class="icon-deco">
+        <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 3C12.5 3 8 7.5 8 13c0 8 10 20 10 20s10-12 10-20c0-5.5-4.5-10-10-10z" fill="#5a3b26" opacity="0.85"/>
+          <circle cx="18" cy="13" r="5" fill="#fdf5e6"/>
+        </svg>
+        <h2 style="margin-bottom:0;">アクセス・営業時間</h2>
+      </div>
+      <div class="two-column">
+        <div>
+          <ul class="info-list">
+            <li><span class="label">店名</span>スナバカフェ</li>
+            <li><span class="label">所在地</span>愛媛県今治市（詳しい住所は店頭またはお電話にて）</li>
+            <li><span class="label">最寄り</span>○○駅より徒歩約10分</li>
+            <li><span class="label">営業時間</span>12:00〜19:00</li>
+            <li><span class="label">定休日</span>なし</li>
+            <li><span class="label">電話</span>※準備中</li>
+          </ul>
+        </div>
+        <div>
+          <p class="small">
+            ＜徒歩でお越しの方（目安）＞<br>
+            ○○駅の改札を出て、駅前通りをまっすぐ進みます。<br>
+            商店街のアーケードを抜けた先の、少し静かな通り沿いにスナバカフェがあります。<br>
+            ※実際の場所に合わせて、道順は自由に書き換えてください。
+          </p>
+          <p class="small">
+            Googleマップのピンを設定できる場合は、<br>
+            「地図はこちら」リンクを設置すると、初めての方でも安心してご来店いただけます。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Notice ── -->
+    <section id="notice">
+      <h2>お知らせ</h2>
+      <p class="small">
+        臨時休業や営業時間の変更がある場合は、こちらでご案内します。
+      </p>
+      <p>
+        ただいま、ゆったりと営業中です。<br>
+        ひと息つきたくなったら、どうぞお気軽にお立ち寄りください。
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    &copy; <span id="year"></span> スナバカフェ / Sunaba Cafe
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
