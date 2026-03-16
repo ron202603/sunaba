@@ -212,9 +212,17 @@
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(0,0,0,0.1);
     }
-    .menu-icon {
-      text-align: center;
-      margin-bottom: 10px;
+    .menu-photo {
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      aspect-ratio: 4/3;
+    }
+    .menu-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
     .menu-header {
       display: flex;
@@ -378,16 +386,8 @@
       <h2>メニュー</h2>
       <ul class="menu-list">
         <li class="menu-item">
-          <div class="menu-icon">
-            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="28" cy="42" rx="18" ry="6" fill="#e8d5b8"/>
-              <path d="M10 36c0-10 8-22 18-22s18 12 18 22" stroke="#5a3b26" stroke-width="2.2" fill="#f9f0e0"/>
-              <ellipse cx="28" cy="36" rx="18" ry="6" fill="#f9f0e0" stroke="#5a3b26" stroke-width="2"/>
-              <path d="M46 32c4-1 7 1 7 4s-3 5-7 4" stroke="#5a3b26" stroke-width="2" fill="none"/>
-              <path d="M22 18c-1-5 2-10 6-12" stroke="#b09070" stroke-width="1.5" fill="none" opacity="0.6" stroke-linecap="round"/>
-              <path d="M28 16c0-6 3-10 5-12" stroke="#b09070" stroke-width="1.5" fill="none" opacity="0.5" stroke-linecap="round"/>
-              <path d="M34 18c1-5-1-9-3-11" stroke="#b09070" stroke-width="1.5" fill="none" opacity="0.4" stroke-linecap="round"/>
-            </svg>
+          <div class="menu-photo">
+            <img src="image.png" alt="オリジナルブレンドコーヒー" loading="lazy">
           </div>
           <div class="menu-header">
             <span class="menu-name">オリジナルブレンドコーヒー</span>
@@ -400,16 +400,8 @@
           </p>
         </li>
         <li class="menu-item">
-          <div class="menu-icon">
-            <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <ellipse cx="28" cy="44" rx="20" ry="5" fill="#e8d5b8"/>
-              <ellipse cx="28" cy="40" rx="20" ry="8" fill="#faf3e6" stroke="#5a3b26" stroke-width="2"/>
-              <path d="M12 34c2-3 6-6 16-6s14 3 16 6" stroke="#c94c30" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-              <path d="M14 30c3-4 7-6 14-6s11 2 14 6" stroke="#e8a640" stroke-width="3" fill="none" opacity="0.7" stroke-linecap="round"/>
-              <circle cx="20" cy="32" r="2" fill="#3a7a2a" opacity="0.7"/>
-              <circle cx="36" cy="31" r="1.5" fill="#3a7a2a" opacity="0.6"/>
-              <circle cx="28" cy="29" r="1.8" fill="#c94c30" opacity="0.5"/>
-            </svg>
+          <div class="menu-photo">
+            <img src="image2.png" alt="昔ながらのナポリタン" loading="lazy">
           </div>
           <div class="menu-header">
             <span class="menu-name">昔ながらのナポリタン</span>
