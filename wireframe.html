@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ワイヤーフレーム | スナバカフェ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+      background: #f5f5f5;
+      font-size: 14px;
+    }
+
+    /* ワイヤーフレーム共通 */
+    .placeholder-img {
+      background: #d0d0d0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #888;
+      font-size: 13px;
+      position: relative;
+    }
+    .placeholder-img::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to top right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    }
+    .placeholder-text {
+      background: #ccc;
+      border-radius: 3px;
+      height: 12px;
+      margin: 6px 0;
+    }
+    .placeholder-text.short { width: 40%; }
+    .placeholder-text.medium { width: 70%; }
+    .placeholder-text.long { width: 95%; }
+    .placeholder-text.heading {
+      height: 18px;
+      background: #aaa;
+      width: 50%;
+      margin: 10px 0;
+    }
+
+    .wire-label {
+      font-size: 11px;
+      color: #e44;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    /* ── ヒーロー ── */
+    .hero {
+      background: #666;
+      color: #fff;
+      text-align: center;
+      padding: 60px 24px;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .hero .wire-label { color: #ffb; }
+    .hero-tagline {
+      background: rgba(255,255,255,0.3);
+      height: 10px;
+      width: 180px;
+      border-radius: 3px;
+      margin: 0 auto 16px;
+    }
+    .hero-title {
+      border: 2px solid rgba(255,255,255,0.6);
+      padding: 10px 40px;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 0.2em;
+      margin-bottom: 16px;
+    }
+    .hero-subtitle {
+      background: rgba(255,255,255,0.25);
+      height: 12px;
+      width: 320px;
+      max-width: 80%;
+      border-radius: 3px;
+      margin: 6px auto;
+    }
+    .hero-divider {
+      width: 60px;
+      height: 2px;
+      background: rgba(255,255,255,0.5);
+      margin: 18px auto 0;
+      border: none;
+    }
+
+    /* ── メインコンテンツ ── */
+    .main-content {
+      max-width: 800px;
+      margin: 30px auto;
+      background: #fff;
+      border: 2px solid #bbb;
+      padding: 36px 28px;
+    }
+
+    /* ── セクション ── */
+    .section {
+      margin-bottom: 32px;
+      padding-bottom: 28px;
+      border-bottom: 1px dashed #ccc;
+    }
+    .section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    .section-heading {
+      display: inline-block;
+      border: 2px solid #999;
+      border-radius: 20px;
+      padding: 4px 18px;
+      font-size: 16px;
+      font-weight: bold;
+      color: #555;
+      margin-bottom: 16px;
+    }
+
+    /* ── 写真付きセクション（2カラム） ── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .img-placeholder {
+      background: #d8d8d8;
+      border-radius: 6px;
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 13px;
+      position: relative;
+      overflow: hidden;
+    }
+    .img-placeholder::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to top right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    }
+    .img-placeholder span { position: relative; z-index: 1; background: #d8d8d8; padding: 2px 8px; border-radius: 3px; }
+
+    /* ── フォトバナー ── */
+    .photo-banner {
+      background: #d0d0d0;
+      height: 160px;
+      border-radius: 8px;
+      margin: 24px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 13px;
+      position: relative;
+      overflow: hidden;
+    }
+    .photo-banner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to top right, transparent calc(50% - 0.5px), #bbb calc(50% - 0.5px), #bbb calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    }
+    .photo-banner span { position: relative; z-index: 1; background: #d0d0d0; padding: 2px 8px; border-radius: 3px; }
+
+    /* ── メニューカード ── */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .menu-card {
+      border: 1.5px solid #bbb;
+      border-radius: 8px;
+      padding: 14px;
+      background: #fafafa;
+    }
+    .menu-card-img {
+      background: #ddd;
+      border-radius: 5px;
+      aspect-ratio: 4/3;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #aaa;
+      font-size: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-card-img::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom right, transparent calc(50% - 0.5px), #ccc calc(50% - 0.5px), #ccc calc(50% + 0.5px), transparent calc(50% + 0.5px)),
+        linear-gradient(to top right, transparent calc(50% - 0.5px), #ccc calc(50% - 0.5px), #ccc calc(50% + 0.5px), transparent calc(50% + 0.5px));
+    }
+    .menu-card-img span { position: relative; z-index: 1; background: #ddd; padding: 2px 6px; border-radius: 3px; }
+    .menu-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+    }
+    .menu-card-name {
+      font-weight: bold;
+      font-size: 14px;
+      color: #444;
+    }
+    .menu-card-price {
+      font-size: 13px;
+      color: #666;
+      white-space: nowrap;
+      font-weight: bold;
+    }
+    .menu-card .placeholder-text { height: 10px; }
+
+    /* ── 店舗情報 ── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+    }
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    .info-table td {
+      padding: 8px 6px;
+      border-bottom: 1px dotted #ccc;
+      vertical-align: top;
+    }
+    .info-table td:first-child {
+      font-weight: bold;
+      color: #555;
+      width: 80px;
+      white-space: nowrap;
+    }
+    .map-placeholder {
+      background: #e0e0e0;
+      border-radius: 8px;
+      height: 200px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #999;
+      font-size: 13px;
+      border: 1.5px solid #bbb;
+    }
+
+    /* ── フッター ── */
+    footer {
+      text-align: center;
+      font-size: 12px;
+      color: #999;
+      padding: 14px 10px 24px;
+    }
+
+    /* ── レスポンシブ ── */
+    @media (max-width: 768px) {
+      .hero { min-height: 220px; padding: 40px 16px; }
+      .hero-title { font-size: 20px; padding: 8px 20px; }
+      .main-content { margin: 16px 10px; padding: 20px 14px; }
+      .two-col { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── 注釈ラベル ── */
+    .annotation {
+      position: absolute;
+      top: 8px;
+      left: 8px;
+      font-size: 10px;
+      background: #e44;
+      color: #fff;
+      padding: 2px 8px;
+      border-radius: 3px;
+      font-weight: bold;
+      z-index: 2;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== HERO ==================== -->
+  <div class="hero" style="position: relative;">
+    <span class="annotation">HERO SECTION</span>
+    <div class="hero-tagline"></div>
+    <div class="hero-title">スナバカフェ</div>
+    <div class="hero-subtitle"></div>
+    <div class="hero-subtitle" style="width: 260px;"></div>
+    <hr class="hero-divider">
+  </div>
+
+  <div class="main-content">
+
+    <!-- ==================== ABOUT ==================== -->
+    <div class="section">
+      <div class="wire-label">About Section</div>
+      <div class="section-heading">スナバカフェについて</div>
+      <div class="two-col">
+        <div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+          <div style="height: 10px;"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text short"></div>
+        </div>
+        <div class="img-placeholder">
+          <span>IMAGE: 店内写真</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== MASTER ==================== -->
+    <div class="section">
+      <div class="wire-label">Master Section</div>
+      <div class="section-heading">マスター・フィオナさん</div>
+      <div class="two-col">
+        <div class="img-placeholder">
+          <span>IMAGE: マスター写真</span>
+        </div>
+        <div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+          <div style="height: 10px;"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== PHOTO BANNER ==================== -->
+    <div class="photo-banner">
+      <span>PHOTO BANNER: カフェの風景</span>
+    </div>
+
+    <!-- ==================== MENU ==================== -->
+    <div class="section" style="margin-top: 8px;">
+      <div class="wire-label">Menu Section</div>
+      <div class="section-heading">メニュー</div>
+      <ul class="menu-grid">
+        <li class="menu-card">
+          <div class="menu-card-img"><span>PHOTO</span></div>
+          <div class="menu-card-header">
+            <span class="menu-card-name">オリジナルブレンドコーヒー</span>
+            <span class="menu-card-price">550円</span>
+          </div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+        </li>
+        <li class="menu-card">
+          <div class="menu-card-img"><span>PHOTO</span></div>
+          <div class="menu-card-header">
+            <span class="menu-card-name">昔ながらのナポリタン</span>
+            <span class="menu-card-price">1,100円</span>
+          </div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+        </li>
+        <li class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-name">アイスコーヒー</span>
+            <span class="menu-card-price">550円</span>
+          </div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+        </li>
+        <li class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-name">ドラフトコーヒー</span>
+            <span class="menu-card-price">880円</span>
+          </div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+        </li>
+        <li class="menu-card">
+          <div class="menu-card-header">
+            <span class="menu-card-name">イチゴのショートケーキ</span>
+            <span class="menu-card-price">450円</span>
+          </div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+        </li>
+      </ul>
+      <div style="margin-top: 12px;">
+        <div class="placeholder-text long" style="background: #ddd;"></div>
+        <div class="placeholder-text medium" style="background: #ddd;"></div>
+      </div>
+    </div>
+
+    <!-- ==================== ACCESS ==================== -->
+    <div class="section">
+      <div class="wire-label">Access Section</div>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 16px;">
+        <div style="width: 30px; height: 30px; border-radius: 50%; background: #999; flex-shrink: 0;"></div>
+        <div class="section-heading" style="margin-bottom: 0;">アクセス・営業時間</div>
+      </div>
+      <div class="info-grid">
+        <div>
+          <table class="info-table">
+            <tr><td>店名</td><td>スナバカフェ</td></tr>
+            <tr><td>所在地</td><td>〒866-0861 熊本県八代市...</td></tr>
+            <tr><td>最寄り</td><td>JR八代駅より徒歩約10分</td></tr>
+            <tr><td>営業時間</td><td>12:00〜19:00</td></tr>
+            <tr><td>定休日</td><td>なし</td></tr>
+            <tr><td>電話</td><td>※準備中</td></tr>
+          </table>
+        </div>
+        <div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text long"></div>
+          <div class="placeholder-text medium"></div>
+          <div style="height: 8px;"></div>
+          <div style="display: inline-block; border: 1.5px solid #999; border-radius: 4px; padding: 3px 12px; font-size: 12px; color: #666;">Googleマップで見る →</div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        Google Maps Embed
+      </div>
+    </div>
+
+    <!-- ==================== NOTICE ==================== -->
+    <div class="section">
+      <div class="wire-label">Notice Section</div>
+      <div class="section-heading">お知らせ</div>
+      <div class="placeholder-text long" style="background: #ddd;"></div>
+      <div style="height: 8px;"></div>
+      <div class="placeholder-text long"></div>
+      <div class="placeholder-text medium"></div>
+    </div>
+
+  </div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    &copy; 2026 スナバカフェ / Sunaba Cafe
+  </footer>
+
+</body>
+</html>
